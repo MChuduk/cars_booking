@@ -5,6 +5,6 @@ const carsBookingController = require('../controllers/carsBookingController');
 const dispatchErrors = require('../controllers/errorsDispatcherController');
 
 router.get('/cars', dispatchErrors(carsBookingController.getFreeCars));
-router.post('/cars/orders:id', carsBookingController.orderCar);
+router.post('/cars/orders', dispatchErrors(carsBookingController.orderCar));
 
 module.exports = router;
