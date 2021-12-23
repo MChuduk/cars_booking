@@ -1,0 +1,19 @@
+{
+  "name": "cars_booking",
+  "version": "1.0.0",
+  "description": "test task",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2",
+    "pg": "^8.7.1",
+    "pg-promise": "^10.11.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
