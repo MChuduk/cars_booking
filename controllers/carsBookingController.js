@@ -12,6 +12,12 @@ class CarsBookingController {
         const order = await carsBookingService.orderCar(carId, startDate, endDate);
         res.json(order);
     }
+
+    async getCarsWorkload(req, res) {
+        const {start, end} = req.body;
+        const workload = await carsBookingService.getCarsWorkload(start, end);
+        res.json(workload);
+    }
 }
 
 module.exports = new CarsBookingController();
