@@ -33,10 +33,9 @@ class CarsBookingService {
     }
 
     async getCarsWorkload(startMonth, endMonth) {
-        let { rows } = await db.query("select car_id, start_date, end_date from order_sessions");
+        let { rows } = await db.query("select car_id, start_date, end_date from order_sessions" +
+            " where start_date >= $1 and end_date <= $2", [startMonth, endMonth]);
         const report = [];
-        const car_ids = await this.getCarsId();
-
 
         for(let i = 0; i < rows.length; i++) {
             const order = rows[i];
@@ -48,8 +47,9 @@ class CarsBookingService {
             const workload = this.getWorkload(start_month, end_month, start_order, end_order);
             report.push({car_id: order.car_id, worload: workload.toFixed(2)})
         }
-        for(let i = 0; i < car_ids.length; i++) {
 
+        const car_ids = await this.getCarsId();
+        for(let i = 0; i < car_ids.length; i++) {
             report.push({car_id: car_ids[i], worload: "0.00"})
         }
         return report;
